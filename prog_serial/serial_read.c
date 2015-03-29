@@ -2,12 +2,11 @@
 #include <termios.h> /* POSIX terminal control definitions */
 #include <fcntl.h>   /* File control definitions */
 
-char buff[255];
+char buff;
 int n;
-
 int main(){
   int fd; /* File descriptor for the port */
-   int ch;
+  int ch;
   fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
   
   if (fd == -1)
@@ -19,13 +18,13 @@ int main(){
   }
   
   while(1){
-   
-    while((n=read(fd,buff,sizeof(buff)-1))>0){
-      buff[n]=0;
-      printf("%s",buff);
+    
+    while((n=read(fd,&buff,1))>0){
+      printf("%c",buff);
+      printf("\n");
       
     }  
-  
+    
   }
   
   close(fd);

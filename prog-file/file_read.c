@@ -12,7 +12,7 @@ int main()
       return(-1);
    }
    
-   while(fgets(buff, 255, fp)){
+   while(fgets(buff, 255, fp) != NULL){
      printf("%s", buff );
    }
    
